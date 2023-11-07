@@ -45,5 +45,37 @@ namespace BookClassExample
             Authors.Add(new Author { FirstName = author.FirstName, LastName = author.LastName, PsName = author.PsName });
             // bad!!!!! potentially Authors.Add(author);
         }
+
+        public void AddAuthor(Author author)
+        {
+            Authors.Add(new Author(author));
+        }
+
+        public override string ToString()
+        {
+            string msg = "";
+
+            msg += $"Title: {Title}\n";
+
+            foreach (var item in Authors)
+            {
+                if (item.PsName is not null && item.PsName != "")
+                {
+                    msg += $"{item.FirstName} {item.LastName} ({item.PsName}) \n";
+                }
+                else
+                {
+                    msg += $"{item.FirstName} {item.LastName}\n";
+                }
+            }
+
+            msg += $"Number of Pages: {Pages.Count}";
+
+            return msg;
+        }
+        public static string BooksAreFun()
+        {
+            return "YES!!!";
+        }
     }
 }
